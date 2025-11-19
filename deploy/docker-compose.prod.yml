@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  website:
+    image: ghcr.io/shahirshamim/personal_website:latest
+    container_name: personal_website
+    restart: always
+    networks:
+      - tunnel_net
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    restart: always
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+    networks:
+      - tunnel_net
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 300 --cleanup
+    environment:
+      - REPO_USER=${GH_USER}
+      - REPO_PASS=${GH_PAT}
+
+networks:
+  tunnel_net:
+    driver: bridge
