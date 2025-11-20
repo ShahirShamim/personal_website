@@ -40,6 +40,7 @@ This allows you to expose your locally running website to the internet securely 
 7.  **Route Traffic**: Click "Next" to configure the tunnel.
     *   **Public Hostname**: Enter your domain (e.g., `www` and `yourdomain.com`).
     *   **Service**: Choose `HTTP` and enter `website:80`. (This matches the service name and port in our `docker-compose.prod.yml`).
+    *   **Add Root Domain**: After saving, go back to the tunnel details, click **Public Hostname**, and add a second entry for your root domain (e.g., just `yourdomain.com` without `www`) pointing to the same service `website:80`.
     *   > [!IMPORTANT]
     >   If you get an error saying "An A, AAAA, or CNAME record with that host already exists", go to the **DNS** tab in your Cloudflare dashboard. Delete any existing A, AAAA, or CNAME records for your domain (e.g., `yourdomain.com` or `www.yourdomain.com`) and try again. These were likely imported from GoDaddy and conflict with the new Tunnel.
 8.  Save the tunnel.
