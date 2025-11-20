@@ -123,7 +123,7 @@ function App() {
 
       <footer className="footer">
         <div className="container">
-          <p>&copy; {new Date().getFullYear()} Shahir Shamim. Built with React & Docker.</p>
+          <p>&copy; {new Date().getFullYear()} Shahir Shamim. Built with React & Docker. (v1.1)</p>
         </div>
       </footer>
     </div>
