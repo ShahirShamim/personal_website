@@ -89,11 +89,21 @@ GH_PAT=your_github_pat
 ## Step 5: Deploy
 
 1.  **Log in to GitHub Container Registry**:
-    You need to authenticate so Docker can pull your private image. Use the same `GH_USER` and `GH_PAT` you put in the `.env` file.
+    You need to authenticate so Docker can pull your private image.
+    
+    **Option A: Use variables (Recommended)**
+    Run these commands to set the variables in your current session (replace values with your actual username and token):
     ```bash
+    export GH_USER=your_github_username
+    export GH_PAT=ghp_your_token_here
     echo $GH_PAT | docker login ghcr.io -u $GH_USER --password-stdin
     ```
-    *(Note: You might need to export the variables first or just replace `$GH_USER` and `$GH_PAT` with the actual values in the command).*
+
+    **Option B: One-line command**
+    Replace the placeholders directly in the command:
+    ```bash
+    echo ghp_your_token_here | docker login ghcr.io -u your_github_username --password-stdin
+    ```
 
 2.  **Run the application**:
     ```bash
