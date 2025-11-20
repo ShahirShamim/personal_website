@@ -8,12 +8,14 @@ services:
     networks:
       - tunnel_net
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
+      - "com.centurylinklabs.watchtower.scope=website"
 
   cloudflared:
     image: cloudflare/cloudflared:latest
     container_name: cloudflared
     restart: always
+    labels:
+      - "com.centurylinklabs.watchtower.scope=website"
     command: tunnel run
     environment:
       - TUNNEL_TOKEN=${TUNNEL_TOKEN}
@@ -29,7 +31,9 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${HOME}/.docker/config.json:/config.json
-    command: --interval 300 --cleanup --label-enable
+    command: --interval 300 --cleanup
+    environment:
+      - WATCHTOWER_SCOPE=website
 
 networks:
   tunnel_net:
