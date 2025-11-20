@@ -133,3 +133,9 @@ The repository is configured with GitHub Actions. whenever you push changes to t
 -   **Error: "no configuration file provided: not found"?** This means you are not in the correct directory or the file is not named `docker-compose.yml`.
     -   Run `ls` to check if `docker-compose.yml` exists in your current folder.
     -   If you named it `docker-compose.prod.yml`, run `docker compose -f docker-compose.prod.yml up -d` instead.
+-   **Error: "Conflict. The container name ... is already in use"?**
+    -   This means an old version of the container is still there. Run this command to remove it:
+        ```bash
+        docker rm -f watchtower personal_website cloudflared
+        ```
+    -   Then try `docker compose up -d` again.
