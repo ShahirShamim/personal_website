@@ -40,6 +40,8 @@ This allows you to expose your locally running website to the internet securely 
 7.  **Route Traffic**: Click "Next" to configure the tunnel.
     *   **Public Hostname**: Enter your domain (e.g., `www` and `yourdomain.com`).
     *   **Service**: Choose `HTTP` and enter `website:80`. (This matches the service name and port in our `docker-compose.prod.yml`).
+    *   > [!IMPORTANT]
+    >   If you get an error saying "An A, AAAA, or CNAME record with that host already exists", go to the **DNS** tab in your Cloudflare dashboard. Delete any existing A, AAAA, or CNAME records for your domain (e.g., `yourdomain.com` or `www.yourdomain.com`) and try again. These were likely imported from GoDaddy and conflict with the new Tunnel.
 8.  Save the tunnel.
 
 ## Step 3: Prepare Your Server
@@ -72,18 +74,31 @@ Add the following content:
 TUNNEL_TOKEN=eyJhIjoi...
 
 # GitHub Container Registry Credentials (for Watchtower to update images)
-# You need to generate a Personal Access Token (Classic) on GitHub with 'read:packages' scope.
+# GH_USER is your GitHub username (e.g., ShahirShamim)
 GH_USER=your_github_username
+
+# GH_PAT is a Personal Access Token. To generate one:
+# 1. Go to GitHub > Settings > Developer settings > Personal access tokens > Tokens (classic).
+# 2. Click "Generate new token (classic)".
+# 3. Give it a name (e.g., "Home Server").
+# 4. Select the 'read:packages' scope.
+# 5. Click "Generate token" and copy the string starting with 'ghp_'.
 GH_PAT=your_github_pat
 ```
 
 ## Step 5: Deploy
 
-Run the application:
+1.  **Log in to GitHub Container Registry**:
+    You need to authenticate so Docker can pull your private image. Use the same `GH_USER` and `GH_PAT` you put in the `.env` file.
+    ```bash
+    echo $GH_PAT | docker login ghcr.io -u $GH_USER --password-stdin
+    ```
+    *(Note: You might need to export the variables first or just replace `$GH_USER` and `$GH_PAT` with the actual values in the command).*
 
-```bash
-docker compose up -d
-```
+2.  **Run the application**:
+    ```bash
+    docker compose up -d
+    ```
 
 This command will:
 1.  Pull the latest image of your website from GitHub Container Registry.
@@ -103,3 +118,6 @@ The repository is configured with GitHub Actions. whenever you push changes to t
 
 -   **Site not loading?** Check the tunnel logs: `docker compose logs cloudflared`.
 -   **Updates not happening?** Check Watchtower logs: `docker compose logs watchtower`. Ensure your GH_PAT has the correct permissions.
+-   **Error: "no configuration file provided: not found"?** This means you are not in the correct directory or the file is not named `docker-compose.yml`.
+    -   Run `ls` to check if `docker-compose.yml` exists in your current folder.
+    -   If you named it `docker-compose.prod.yml`, run `docker compose -f docker-compose.prod.yml up -d` instead.
