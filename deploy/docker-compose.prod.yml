@@ -26,10 +26,8 @@ services:
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ${HOME}/.docker/config.json:/config.json
     command: --interval 300 --cleanup
-    environment:
-      - REPO_USER=${GH_USER}
-      - REPO_PASS=${GH_PAT}
 
 networks:
   tunnel_net:

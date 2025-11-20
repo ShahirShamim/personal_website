@@ -74,16 +74,9 @@ Add the following content:
 # Your Cloudflare Tunnel Token (from Step 2)
 TUNNEL_TOKEN=eyJhIjoi...
 
-# GitHub Container Registry Credentials (for Watchtower to update images)
-# GH_USER is your GitHub username (e.g., ShahirShamim)
+# GitHub Container Registry Credentials
+# These are used for the one-time login command (Step 5)
 GH_USER=your_github_username
-
-# GH_PAT is a Personal Access Token. To generate one:
-# 1. Go to GitHub > Settings > Developer settings > Personal access tokens > Tokens (classic).
-# 2. Click "Generate new token (classic)".
-# 3. Give it a name (e.g., "Home Server").
-# 4. Select the 'read:packages' scope.
-# 5. Click "Generate token" and copy the string starting with 'ghp_'.
 GH_PAT=your_github_pat
 ```
 
