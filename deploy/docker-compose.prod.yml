@@ -21,8 +21,7 @@ services:
       - TUNNEL_TOKEN=${TUNNEL_TOKEN}
     networks:
       - tunnel_net
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
+
 
   watchtower_website:
     image: containrrr/watchtower
