@@ -20,9 +20,9 @@ services:
     networks:
       - tunnel_net
 
-  watchtower:
+  watchtower_website:
     image: containrrr/watchtower
-    container_name: watchtower
+    container_name: watchtower_website
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

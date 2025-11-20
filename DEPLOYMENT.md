@@ -130,6 +130,6 @@ The repository is configured with GitHub Actions. whenever you push changes to t
 -   **Error: "Conflict. The container name ... is already in use"?**
     -   This means an old version of the container is still there. Run this command to remove it:
         ```bash
-        docker rm -f watchtower personal_website cloudflared
+        docker rm -f watchtower_website personal_website cloudflared
         ```
     -   Then try `docker compose up -d` again.
