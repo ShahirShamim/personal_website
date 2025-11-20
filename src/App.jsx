@@ -123,7 +123,14 @@ function App() {
 
       <footer className="footer">
         <div className="container">
-          <p>&copy; {new Date().getFullYear()} Shahir Shamim. Built with React & Docker. (v1.2)</p>
+          <p>
+            &copy; {new Date().getFullYear()} Shahir Shamim. Built with React & Docker.
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem', marginLeft: '0.5rem' }}>
+              <Server size={16} style={{ verticalAlign: 'middle' }} />
+              Hosted on my personal homelab
+            </span>
+            (v1.3)
+          </p>
         </div>
       </footer>
     </div>
