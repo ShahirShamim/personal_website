@@ -92,20 +92,22 @@ GH_PAT=your_github_pat
     You need to authenticate so Docker can pull your private image.
     
     **Option A: Use variables (Recommended)**
-    Run these commands to set the variables in your current session (replace values with your actual username and token):
+    Run these commands to set the variables in your current session.
+    **IMPORTANT**: Replace `<YOUR_USERNAME>` and `<YOUR_PAT_TOKEN>` with your actual details before running!
     ```bash
-    export GH_USER=your_github_username
-    export GH_PAT=ghp_your_token_here
+    export GH_USER=<YOUR_USERNAME>
+    export GH_PAT=<YOUR_PAT_TOKEN>
     echo $GH_PAT | docker login ghcr.io -u $GH_USER --password-stdin
     ```
 
     **Option B: One-line command**
     Replace the placeholders directly in the command:
     ```bash
-    echo ghp_your_token_here | docker login ghcr.io -u your_github_username --password-stdin
+    echo <YOUR_PAT_TOKEN> | docker login ghcr.io -u <YOUR_USERNAME> --password-stdin
     ```
 
 2.  **Run the application**:
+    Once you see "Login Succeeded", run:
     ```bash
     docker compose up -d
     ```
