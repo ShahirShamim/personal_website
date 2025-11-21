@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { Github, Linkedin, Mail, Server, Terminal, Database, MessageCircle } from 'lucide-react';
 import ExperienceCard from './components/ExperienceCard';
 import EducationCard from './components/EducationCard';
@@ -7,9 +7,12 @@ import HomelabSection from './components/HomelabSection';
 import { experience, homelab, education } from './data';
 import shinyMetagross from './assets/shiny-metagross.gif';
 
+import CustomCursor from './components/CustomCursor';
+
 function App() {
   return (
     <div className="app">
+      <CustomCursor />
       <header className="header glass-card">
         <div className="container header-content flex justify-between items-center">
           <h1 className="logo">
@@ -32,12 +35,12 @@ function App() {
         <section id="hero" className="hero min-h-screen flex flex-col justify-center relative">
           <div className="hero-bg"></div>
           <div className="container hero-content text-center">
-            <motion.div
+            <Motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <motion.img
+              <Motion.img
                 src={shinyMetagross}
                 alt="Shiny Metagross"
                 className="w-32 h-32 mx-auto mb-6"
@@ -62,7 +65,7 @@ function App() {
                   <Github size={20} /> GitHub
                 </a>
               </div>
-            </motion.div>
+            </Motion.div>
           </div>
         </section>
 

@@ -1,10 +1,10 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { Calendar, MapPin } from 'lucide-react';
 
 const EducationCard = ({ edu, index }) => {
     return (
-        <motion.div
+        <Motion.div
             className="glass-card experience-card p-6 mb-6"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -56,7 +56,7 @@ const EducationCard = ({ edu, index }) => {
                     </li>
                 ))}
             </ul>
-        </motion.div>
+        </Motion.div>
     );
 };
 

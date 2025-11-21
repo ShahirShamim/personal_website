@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { Server, Cpu, Shield } from 'lucide-react';
 
 const HomelabCard = ({ item, index }) => {
@@ -9,7 +9,7 @@ const HomelabCard = ({ item, index }) => {
         "Network Security": <Shield size={32} className="text-green-400" />
     };
 
-    const CardContent = () => (
+    const content = (
         <>
             <div className="card-icon">
                 {icons[item.title] || <Server size={32} />}
@@ -28,7 +28,7 @@ const HomelabCard = ({ item, index }) => {
 
     if (item.link) {
         return (
-            <motion.a
+            <Motion.a
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -38,21 +38,21 @@ const HomelabCard = ({ item, index }) => {
                 transition={{ duration: 0.3, delay: index * 0.05 }}
                 viewport={{ once: true }}
             >
-                <CardContent />
-            </motion.a>
+                {content}
+            </Motion.a>
         );
     }
 
     return (
-        <motion.div
+        <Motion.div
             className={cardClasses}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: index * 0.05 }}
             viewport={{ once: true }}
         >
-            <CardContent />
-        </motion.div>
+            {content}
+        </Motion.div>
     );
 };
 
