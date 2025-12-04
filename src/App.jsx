@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion as Motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Server, Terminal, Database, MessageCircle } from 'lucide-react';
+import { Github, Linkedin, Mail, Server, Terminal, Database, MessageCircle, FileText } from 'lucide-react';
 import ExperienceCard from './components/ExperienceCard';
 import EducationCard from './components/EducationCard';
 import HomelabSection from './components/HomelabSection';
@@ -61,8 +61,11 @@ function App() {
                 <a href="#contact" className="btn btn-primary">
                   Get in Touch
                 </a>
-                <a href="https://github.com/shahirshamim" target="_blank" rel="noopener noreferrer" className="btn btn-glass">
+                <a href="https://github.com/shahirshamim" target="_blank" rel="noopener noreferrer" className="btn btn-glass" style={{ backgroundColor: '#24292e', color: 'white', borderColor: '#24292e' }}>
                   <Github size={20} /> GitHub
+                </a>
+                <a href="/resume.pdf" download="Shahir_Shamim_Resume.pdf" className="btn btn-glass" style={{ backgroundColor: 'rgba(255, 255, 255, 0.9)', color: '#1e293b', borderColor: 'rgba(255, 255, 255, 0.9)' }}>
+                  <FileText size={20} /> Resume
                 </a>
               </div>
             </Motion.div>
