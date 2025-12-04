@@ -135,7 +135,7 @@ function App() {
               <Server size={16} style={{ verticalAlign: 'middle' }} />
               Hosted on my personal homelab
             </span>
-            (v1.3)
+            (v1.4)
           </p>
         </div>
       </footer>
